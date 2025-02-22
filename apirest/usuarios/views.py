@@ -1,7 +1,9 @@
 from rest_framework import generics
+from rest_framework.views import APIView
 from .models import Usuario, Pedido
 from .serializers import UsuarioSerializer, PedidoSerializer
-
+from rest_framework.response import Response
+import requests
 class UsuarioListCreate(generics.ListCreateAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
@@ -37,3 +39,4 @@ class JorgeAPIView(APIView):
             return Response(response.json())  
         else:
             return Response({"error": "No se pudo obtener la API de Jorge"}, status=500)           
+            
