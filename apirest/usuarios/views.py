@@ -29,7 +29,7 @@ class ClimaAPIView(APIView):
             return Response(response.json())  
         else:
             return Response({"error": "No se pudo obtener el clima"}, status=500)
-            
+
 class JorgeAPIView(APIView):
     def get(self, request):
         url = "http://18.221.57.79:8000/api/Perfil"
@@ -39,4 +39,4 @@ class JorgeAPIView(APIView):
             return Response(response.json())  
         else:
             return Response({"error": "No se pudo obtener la API de Jorge"}, status=500)           
-            
+
