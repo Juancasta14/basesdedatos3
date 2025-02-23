@@ -1,7 +1,7 @@
 from rest_framework import generics
 from rest_framework.views import APIView
-from .models import Usuario, Pedido
-from .serializers import UsuarioSerializer, PedidoSerializer
+from .models import Usuario, Pedido, Perfil, Productos, Cliente
+from .serializers import UsuarioSerializer, PedidoSerializer, PerfilSerializer, ProductosSerializer, ClienteSerializer
 from rest_framework.response import Response
 import requests
 class UsuarioListCreate(generics.ListCreateAPIView):
@@ -19,6 +19,31 @@ class PedidoListCreate(generics.ListCreateAPIView):
 class PedidoDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Pedido.objects.all()
     serializer_class = PedidoSerializer
+    
+
+class PerfilListCreate(generics.ListCreateAPIView):
+    queryset = Perfil.objects.all()
+    serializer_class = PerfilSerializer
+
+class PerfilDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Perfil.objects.all()
+    serializer_class = PerfilSerializer    
+    
+class ProductosListCreate(generics.ListCreateAPIView):
+    queryset = Productos.objects.all()
+    serializer_class = ProductosSerializer
+
+class ProductosDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Productos.objects.all()
+    serializer_class = ProductosSerializer      
+
+class ClienteListCreate(generics.ListCreateAPIView):
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
+
+class ClienteDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Productos.objects.all()
+    serializer_class = ClienteSerializer 
 
 class ClimaAPIView(APIView):
     def get(self, request):
@@ -32,11 +57,22 @@ class ClimaAPIView(APIView):
 
 class JorgeAPIView(APIView):
     def get(self, request):
-        url = "http://18.221.57.79:8000/api/Perfil"
+        url = "http://18.221.57.79:8000/api"
         response = requests.get(url)
 
         if response.status_code == 200:
             return Response(response.json())  
         else:
-            return Response({"error": "No se pudo obtener la API de Jorge"}, status=500)           
+            return Response({"error": "No se pudo obtener la API de Jorge"}, status=500)
+ 
+class CrisAPIView(APIView):
+    def get(self, request):
+        url = "http://3.19.235.79:8000/api"
+        response = requests.get(url)
 
+        if response.status_code == 200:
+            return Response(response.json())  
+        else:
+            return Response({"error": "No se pudo obtener la API de Cristian"}, status=500)
+            
+ 

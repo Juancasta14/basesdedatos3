@@ -16,9 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from usuarios.views import ClimaAPIView, JorgeAPIView , CrisAPIView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('usuarios.urls')),
+    path('clima/', ClimaAPIView.as_view()), 
+    path('jorge/', JorgeAPIView.as_view()),
+    path('cris/', CrisAPIView.as_view()),
 ]
 
