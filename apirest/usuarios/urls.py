@@ -12,6 +12,7 @@ router.register(r'clientes_mibd_rocha', ClienteViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    
    
 ]
 

@@ -1,6 +1,7 @@
 from usuarios.models import Usuario, Pedido, Perfil, Productos, Cliente 
 from rest_framework import viewsets
 from rest_framework import serializers
+from .script import *
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -29,6 +30,9 @@ class PerfilSerializer(serializers.ModelSerializer):
 class PerfilViewSet(viewsets.ModelViewSet):
     queryset = Perfil.objects.all()
     serializer_class = PerfilSerializer
+    def get_queryset(self):
+        obtener_y_guardar_datos_perfil()  
+        return Perfil.objects.all()
     
     
 class ProductosSerializer(serializers.ModelSerializer):
@@ -39,13 +43,10 @@ class ProductosSerializer(serializers.ModelSerializer):
 class ProductosViewSet(viewsets.ModelViewSet):
     queryset = Productos.objects.all()
     serializer_class = ProductosSerializer
-    
-    
-class PerfilViewSet(viewsets.ModelViewSet):
-    queryset = Perfil.objects.all()
-    serializer_class = PerfilSerializer
-    
-    
+    def get_queryset(self):
+        obtener_y_guardar_datos_productos()  
+        return Productos.objects.all()
+   
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente
@@ -54,3 +55,6 @@ class ClienteSerializer(serializers.ModelSerializer):
 class ClienteViewSet(viewsets.ModelViewSet):
     queryset = Cliente.objects.all()
     serializer_class = ClienteSerializer
+    def get_queryset(self):
+        obtener_y_guardar_datos_clientes()  
+        return Cliente.objects.all()

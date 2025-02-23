@@ -74,5 +74,14 @@ class CrisAPIView(APIView):
             return Response(response.json())  
         else:
             return Response({"error": "No se pudo obtener la API de Cristian"}, status=500)
-            
- 
+
+class RochaAPIView(APIView):
+    def get(self, request):
+        url = "http://18.190.176.232:8000/api/"
+        response = requests.get(url)
+
+        if response.status_code == 200:
+            return Response(response.json())  
+        else:
+            return Response({"error": "No se pudo obtener la API de Rocha"}, status=500)
+   
