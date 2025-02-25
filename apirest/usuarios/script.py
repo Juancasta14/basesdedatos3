@@ -2,6 +2,7 @@ import os
 import django
 import requests
 from .models import *
+import csv
 
 def sync_data(model, url, mapping):
     response = requests.get(url)
@@ -46,5 +47,15 @@ def obtener_y_guardar_datos_productos():
         "ubicacion": "ubicacion"
     })
         
-        
+def importar_csv(ruta_csv):
+    with open(ruta_csv, newline='', encoding='utf-8') as archivo:
+        lector = csv.DictReader(archivo)
+        for fila in lector:
+            DatosPrivados.objects.create(
+                product_name=fila['product_name'],
+
+            )
+
+
+importar_csv('apirest/amazon.csv')       
 

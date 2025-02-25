@@ -58,3 +58,11 @@ class ClienteViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         obtener_y_guardar_datos_clientes()  
         return Cliente.objects.all()
+        
+        
+        
+class ProductosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Productos
+        fields = '__all__'     
+

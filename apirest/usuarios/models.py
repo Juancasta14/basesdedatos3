@@ -56,3 +56,23 @@ class Cliente(models.Model):
 
     def _str_(self):
         return self.nombre
+        
+ 
+class DatosPrivados(models.Model):
+    id = models.AutoField(primary_key=True)
+    product_id = models.CharField(max_length=255, unique=True)
+    product_name = models.CharField(max_length=255)
+    category = models.CharField(max_length=255)
+    discounted_price = models.DecimalField(max_digits=10, decimal_places=2)
+    actual_price = models.DecimalField(max_digits=10, decimal_places=2)
+    discount_percentage = models.CharField(max_length=10)  
+    rating = models.FloatField()
+    rating_count = models.IntegerField()
+    about_product = models.TextField()
+    img_link = models.URLField()
+    product_link = models.URLField()
+    class Meta:
+        db_table = 'datosprivados'
+    def _str_(self):
+        return self.product_name   
+

@@ -1,7 +1,7 @@
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from rest_framework.views import APIView
-from .models import Usuario, Pedido, Perfil, Productos, Cliente
-from .serializers import UsuarioSerializer, PedidoSerializer, PerfilSerializer, ProductosSerializer, ClienteSerializer
+from .models import Usuario, Pedido, Perfil, Productos, Cliente, DatosPrivados
+from .serializers import UsuarioSerializer, PedidoSerializer, PerfilSerializer, ProductosSerializer, ClienteSerializer, DatosPrivadosSerializer
 from rest_framework.response import Response
 import requests
 class UsuarioListCreate(generics.ListCreateAPIView):
@@ -84,4 +84,10 @@ class RochaAPIView(APIView):
             return Response(response.json())  
         else:
             return Response({"error": "No se pudo obtener la API de Rocha"}, status=500)
-   
+
+class DatosPrivadosViewSet(viewsets.ModelViewSet):
+    queryset = DatosPrivados.objects.all()
+    serializer_class = DatosPrivadosSerializer
+
+
+  
