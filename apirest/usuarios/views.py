@@ -1,7 +1,7 @@
 from rest_framework import generics, viewsets
 from rest_framework.views import APIView
-from .models import Usuario, Pedido, Perfil, Productos, Cliente, DatosPrivados
-from .serializers import UsuarioSerializer, PedidoSerializer, PerfilSerializer, ProductosSerializer, ClienteSerializer, DatosPrivadosSerializer
+from .models import Usuario, Pedido, Perfil, Productos, Cliente, DatosPrivados, Trip, Envio
+from .serializers import UsuarioSerializer, PedidoSerializer, PerfilSerializer, ProductosSerializer, ClienteSerializer, DatosPrivadosSerializer, DatosPrivadosCorreoSerializer, EnvioSerializer
 from rest_framework.response import Response
 import requests
 class UsuarioListCreate(generics.ListCreateAPIView):
@@ -89,5 +89,11 @@ class DatosPrivadosViewSet(viewsets.ModelViewSet):
     queryset = DatosPrivados.objects.all()
     serializer_class = DatosPrivadosSerializer
 
+class DatosPrivadosCorreoViewSet(viewsets.ModelViewSet):
+    queryset = Trip.objects.all()
+    serializer_class = DatosPrivadosCorreoSerializer
 
+class EnvioViewSet(viewsets.ModelViewSet):
+    queryset = Envio.objects.all()
+    serializer_class = EnvioSerializer
   

@@ -3,6 +3,7 @@ import django
 import requests
 from .models import *
 import csv
+from datetime import datetime
 
 def sync_data(model, url, mapping):
     response = requests.get(url)
@@ -55,7 +56,5 @@ def importar_csv(ruta_csv):
                 product_name=fila['product_name'],
 
             )
-
-
 importar_csv('apirest/amazon.csv')       
 
